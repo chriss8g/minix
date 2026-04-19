@@ -55,11 +55,14 @@ int pthread_mutex_lock(pthread_mutex_t *mutex)
  *===========================================================================*/
 int pthread_mutex_trylock(pthread_mutex_t *mutex)
 {
+	
+
 	if (PTHREAD_MUTEX_INITIALIZER == *mutex) {
 		mthread_mutex_init(mutex, NULL);	
 	}
+	
+	return mthread_mutex_trylock(mutex);
 
-	return pthread_mutex_trylock(mutex);
 }
 
 /*===========================================================================*
