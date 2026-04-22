@@ -34,7 +34,7 @@ int main()
     {
         return 1;
     }
-    if(r2 != EBUSY && r2 != EDEADLCK)
+    if(r2 != EBUSY && r2 != EDEADLK)
     {
         return 2;
     }
