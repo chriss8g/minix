@@ -28,14 +28,13 @@ int main()
     printf("unlock: %d (%s)\n", r3, errname(r3));
 
     r4 = pthread_mutex_destroy(&mutex);
-    printf("destroy: %d (%s)\n", r4, err
-        name(r4));
+    printf("destroy: %d (%s)\n", r4, errname(r4));
 
     if(r1 != 0)
     {
         return 1;
     }
-    if(r2 != EBUSY && r2 != EDEADLOCK)
+    if(r2 != EBUSY && r2 != EDEADLCK)
     {
         return 2;
     }
