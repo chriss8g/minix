@@ -16,7 +16,7 @@ void tree(char *dir)
 
     while ((hs = readdir(directorio)) != NULL)
     {
-        if((hs -> d_name[0] == "." && hs -> d_name[1] == '\0') || (hs -> d_name[0] == '.' && hs -> d_name[1] == '.' && hs -> d_name[2] == '\0'))
+        if((hs -> d_name[0] == '.' && hs -> d_name[1] == '\0') || (hs -> d_name[0] == '.' && hs -> d_name[1] == '.' && hs -> d_name[2] == '\0'))
         {
             continue;
         }
