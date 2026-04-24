@@ -2,7 +2,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
-void tree(char *dir)
+void tree(char *dir, int level)
 {
     DIR *directorio = opendir(dir);
 
@@ -20,13 +20,18 @@ void tree(char *dir)
         {
             continue;
         }
+        for(int i = 0; i < level+1;i++)
+        {
+            printf("  ");
+        }
         printf("%s\n", hs->d_name);
         char path[1024];
         snprintf(path, sizeof(path), "%s/%s", dir, hs->d_name);
         lstat(path, &info);
         if(S_ISDIR(info.st_mode))
         {
-            tree(path);
+            int count = level + 1;
+            tree(path, count);
         }
         // un if si no es una carpeta solo imprimimos su nombre
         //caso contrario guardamos la direccion de la carpeta la 
@@ -41,12 +46,12 @@ int main(int argc, char *argv[])
     // Esto es para el directorio actual
     if(argc == 1)
     {
-        tree(".");
+        tree(".", 0);
     }
 
     // Esto es para un directorio específico
     else
     {
-        tree(argv[1]);
+        tree(argv[1], 0);
     }
 }
