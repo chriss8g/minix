@@ -1,0 +1,920 @@
+[33mcommit 2b0c802bf630647a790ff3eb01b18970589ebed8[m
+Author: CristianMCG <cmcguzman05@gmail.com>
+Date:   Wed Apr 22 18:46:32 2026 +0000
+
+    hito 1
+
+[33mcommit cde2dcc60efd67335ca8bea958079f9765593769[m
+Author: CristianMCG <cmcguzman05@gmail.com>
+Date:   Tue Apr 21 06:44:20 2026 +0000
+
+    hito 1
+
+[33mcommit 4db99f4012570a577414fe2a43697b2f239b699e[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:21:02 2018 +0000
+
+    Remove building with NOCRYPTO option
+    
+    Infrastructure change to come in a separate commit.
+    https://mail-index.netbsd.org/tech-crypto/2017/05/06/msg000719.html
+    Patch for CVE-2018-049.
+    Prevent shell execution with r command.
+    Check bounds before dereferencing in encryption routines.
+    Document -S to disable ! commands.
+    
+    Sync with NetBSD-8
+    
+    closes #268
+    
+    Change-Id: I1c2849e0097b0cc9f89beef5ee24ccd9d73b4ee2
+
+[33mcommit 0578da21635325ab6c8d4908ebc4a827cd657961[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Thu Nov 1 23:20:55 2018 +0000
+
+    Drop main() prototype. Syncs with NetBSD-8
+    
+    closes #267
+    
+    Change-Id: I80a2e3329463e3473fa45fbc20681861a9ba658f
+
+[33mcommit c9e73d66fc8d3d5154e8a8fa548cce583a98bc3d[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sat Nov 10 22:38:06 2018 +0000
+
+    etc/services - sync with NetBSD-8
+    
+    close #278
+    
+    Change-Id: I36c2a58bbcdc397e15813740058d05c517a77a60
+
+[33mcommit 4322f20d76933bba96f46b4e10b56aa19f85c1d5[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sat Nov 10 22:37:46 2018 +0000
+
+    etc/protocols - sync with NetBSD-8
+    
+    Change-Id: I443aafe164a9671fcd440c695a481f88b80b3bcb
+
+[33mcommit 93184c84570653a2ed30858e700fd7e667703905[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 15:06:13 2018 +0000
+
+    Sync some manuals from bin & sbin with NetBSD-8
+    
+    Grammar fixes.
+    Add/correct HISTORY section.
+    
+    closes #276
+    
+    Change-Id: I0640104acea9be90f4cbbda34abfb47c8a0b753b
+
+[33mcommit 8e97a2d0236f18f935ecb998b255814def9a3e78[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:59:34 2018 +0000
+
+    sbin/newfs_v7fs: sync with NetBSD-8
+    
+    need <sys/stat.h>
+    Document history.
+    
+    closes #275
+    
+    Change-Id: I988a269b1fffc58238008b4aa4bd8d2a56e123c4
+
+[33mcommit 25d017aa13555ad6275f6d3aa1113d2b0b092534[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:48:36 2018 +0000
+
+    sbin/newfs_msdos: sync with NetBSD-8
+    
+    Allow 0 timestamp.
+    Grammar fixes.
+    Use the create_size if given to compute the real size instead of stat'ing
+    the file again, which might have been larger to start with.
+    Document history.
+    
+    closes #274
+    
+    Change-Id: Ibf881f22f351c7a17488b24a05c2110be1d65ae0
+
+[33mcommit 609f541dd39e329bf1a837a4c8b896937a329211[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:44:04 2018 +0000
+
+    bin/stty: sync with NetBSD-8
+    
+    need <time.h> for time(3)
+    
+    closes #273
+    
+    Change-Id: I23c6747e2490192a2ff7b98ce9f55b2e9d45be00
+
+[33mcommit df7803072896ac3845bbac40b98cfed61985d145[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:40:04 2018 +0000
+
+    bin/rmdir: sync with NetBSD-8
+    
+    NetBSD PR/48182: Fix rmdir -p handling of top-level (root) directory.
+    
+    closes #272
+    
+    Change-Id: I5a69ac84ca236ca03feea49dc9c84537147c2d65
+
+[33mcommit e8ccbb3b67f69e9408c99b4eb272c81081e90ecb[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:32:53 2018 +0000
+
+    bin/ls: sync with NetBSD-8
+    
+    NetBSD PR 50997 David Binderman: fix format strings.
+    
+    closes #271
+    
+    Change-Id: I27934ac0328b3f774f2adeada3ca6e0d62637821
+
+[33mcommit 92435d6dd99957dd9a86bf108d4fe33c13d68421[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Thu Nov 1 23:18:35 2018 +0000
+
+    Sync bin/df with NetBSD-8
+    
+    closes #270
+    
+    Change-Id: Ide8717d095ed8e8ae7c942470f2af8c6a169fcc0
+
+[33mcommit 02efe53e8c43842ad2e7f1bfd138e4a74f48d85f[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Sun Nov 4 14:14:00 2018 +0000
+
+    Drop main() prototype.
+    
+    Sync with NetBSD-8
+    
+    closes #269
+    
+    Change-Id: I4ce3bcbc1a1dc71745fe77bd581d07aeafc2f01b
+
+[33mcommit 2529152f60d083e710c98fb1cac62e3ba956bf8b[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Tue Oct 30 14:10:25 2018 +0000
+
+    Save the redirect & use HTTPS
+    
+    Change-Id: I149964614957566d8bf52ba5100d067de6536731
+
+[33mcommit 2a4046681ace62ad0c38bcc11c47f796c74ca4c6[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Tue Oct 30 14:09:09 2018 +0000
+
+    Update post installation article url
+    
+    Change-Id: I97516481bf3e19b7f03c7e432ff882fc053ff9e8
+
+[33mcommit 3d71ae06b1d4e9abe50cfd168d1260eaae023e65[m
+Author: Jakub Jermář <jakub@jermar.eu>
+Date:   Wed Oct 24 11:25:12 2018 +0200
+
+    Replace misplaced string VMware with VirtualBox
+    
+    In the case of vbfs the host is VirtualBox so mentions of VMware must be
+    copy-paste errors.
+    
+    closes #264
+    
+    Change-Id: Ieb1316155be8f8fb81e3e5a2b21147594f6cb4d9
+
+[33mcommit 03704f431ec452936b854919a0b174b2729820a0[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Fri Oct 26 21:12:41 2018 -0400
+
+    replace logger with NetBSD version
+    
+    closes #265
+    
+    Change-Id: I31cb8e0ae57cc2c18a6aab1d2749818e1656c294
+
+[33mcommit 2ffe8daa0ee296f7eadec229ad646156214b042a[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 23:42:47 2018 -0400
+
+    usage.8: fix typo: slower then -> slower than
+    
+    Change-Id: Ifc23506f857ef748f50c5e5d3143b034c0086032
+
+[33mcommit f94fc08000ab0e8141d5e38b64330d2368ab678d[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 23:41:59 2018 -0400
+
+    part.8: fix typo: other then -> other than
+    
+    Change-Id: I966376d9d34b30a7bdd87272858d50248ca41221
+
+[33mcommit c38c77c1ca8110aa5a86a603365b6e297afca4cd[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 23:40:51 2018 -0400
+
+    dhcp-eval.5: fix typo: greater then -> greater than
+    
+    Change-Id: I90a91f5392cfe6b07c0fab8ce34c8ceead2ce548
+
+[33mcommit d189cd4505f878a012bda2c7381a90b631fa1957[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 23:39:17 2018 -0400
+
+    vol.1: fix typo: larger then -> larger than
+    
+    Change-Id: I962f05774d9cf8ce4fb441ff7e2765a895649805
+
+[33mcommit 081c95a7f45981fada4c659de8c28d399efda43b[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 23:03:25 2018 -0400
+
+    import games/worm from NetBSD
+    
+    closes #262
+    
+    Change-Id: I63674a1e5457bbb3d30708e12f25c30487d70324
+
+[33mcommit 68b3d8c1a0a44bf943b7de043971362cd017e5b6[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Tue Oct 23 18:47:30 2018 -0400
+
+    import games/worms from NetBSD
+    
+    closes #261
+    
+    Change-Id: I83e978c24a632c851772787695c0af6c5b2d09c6
+
+[33mcommit fb9c64b2fa893f8445fce2c2a57621eff11bd125[m
+Author: Christopher Simons <christopherleesimons@gmail.com>
+Date:   Mon Oct 22 11:46:36 2018 -0400
+
+    import games/wtf from NetBSD
+    
+    closes #260
+    
+    Change-Id: Ia3bbe28d77dff7f21fe7de3d0c03a65f6681049c
+
+[33mcommit 8e2f9ecaf4926052498af144c26341e7a17ab842[m
+Author: Tai Groot <groot.tai@gmail.com>
+Date:   Wed Oct 10 18:07:37 2018 -0700
+
+    Fixed tiny spelling error in proc.c
+    
+    an returned -> and returned
+    
+    closes #255
+    
+    Change-Id: I936e95c6d026f83f66a48120aa9a331b8797b89c
+
+[33mcommit 7377a594e4aadf10d5bcbc0a70c8515160715364[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Tue Jun 26 00:12:34 2018 +0000
+
+    Sync with manuals from netbsd-8 branch.
+    
+    Change-Id: I82fdb7486ae4f0f8f622046538806471bfb17c1d
+
+[33mcommit a51351745933980d6dda950296b217519b0208a0[m
+Author: Sevan Janiyan <venture37@geeklan.co.uk>
+Date:   Mon Jun 25 23:35:19 2018 +0000
+
+    Sync with cat.c from netbsd-8
+    
+    When cat is invoked with -se, print a '$' on blank lines.
+    
+    Change-Id: I1bdcced967261a231eab93e8d28736f9f52f53fd
+
+[33mcommit 145839b147185387572ec230554d5b613fedca87[m
+Author: Lionel Sambuc <lionel.sambuc@gmail.com>
+Date:   Tue Aug 21 21:37:57 2018 +0200
+
+    Fix Compilation on Ubuntu 18.04
+    
+     * Fix Compilation of GCC on Ubuntu 18.04
+       Apply the following patch:
+         https://gcc.gnu.org/git/?p=gcc.git;a=patch;h=ec1cc0263f156f70693a62cf17b254a0029f4852
+    
+     * Fix GNU make build on new GNU glibc systems
+    
+    Change-Id: I44fcdc23b037a53d8cf50ec09ba9f210a1e127c8
+
+[33mcommit 03ac74ede908465cc64c671bbd209e761dc765dc[m
+Author: Lionel Sambuc <lionel.sambuc@gmail.com>
+Date:   Sat Mar 31 19:34:03 2018 +0200
+
+    Fix ARM NDEBUG Builds
+    
+    Change-Id: I1250744d54b75d6380393afe848a6eb8c5dc894d
+
+[33mcommit 35b65c5af1d53112a49b08e87ddc00d7e24625e9[m
+Author: Arne Welzel <arne.welzel@gmail.com>
+Date:   Thu Mar 22 15:47:36 2018 +0100
+
+    minix/tests/arm: naive tests to cause data aborts
+    
+    Some assembly code to cause unaligned access as well as
+    segmentation faults to exercise the data abort path.
+    
+    Change-Id: Ie419114b76a8db849537a94fda781019cf14d50d
+
+[33mcommit 0dd719f1bd28ca1fd3474cf2d18d9e041c5ec028[m
+Author: Arne Welzel <arne.welzel@gmail.com>
+Date:   Thu Mar 22 14:27:32 2018 +0100
+
+    kernel/arm: send SIGSEGV to processes
+    
+    On second thought, handle unknown faults caused by processes by sending
+    SIGSEGV to them instead of bringing the whole system to a grind.
+    
+    arm/archconst: use values defined in armreg.h
+    
+    Change-Id: Ieed5bb06910ab0c8eef1e68b0b4eec680867acd3
+
+[33mcommit 5e9e5b98f6f1bc482c78412565788f0e34ae42b6[m
+Author: Arne Welzel <arne.welzel@gmail.com>
+Date:   Wed Mar 21 20:29:58 2018 +0100
+
+    bsd.own.mk: use -mno-unaligned-access on ARM
+    
+    Without this option, gcc may emit code accessing unaligned memory. This,
+    and the fact that SCTRL.A (System Control Register - Alignment Check) is
+    set to 1 in Minix causes data aborts when such code is encountered.
+    
+    This was the cause of #104. The `minix-service' executable caused
+    unaligned memory accesses calling into getpwnam(). These then trigger
+    data abort exceptions. On ARM, these were previously forwarded to `vm'
+    as pagefaults. However, `vm' did not properly handle them, but instead
+    allocated one page for the faulting address (over and over again) and
+    then resumed the process at the faulting instruction (over and over
+    again). This behavior masked the whole story as an OOM.
+    
+    Below the assembly version getpwent.c in which unaligned memory
+    accesses are even highlighted...
+    
+     ...
+     341         ldr     lr, [sp, #48]
+     342         cmp     lr, #0
+     343         bne     .L46
+     344         ldr     r0, [r4]        @ unaligned
+     345         add     r1, r7, #5
+     346         str     r0, [sp, #4]    @ unaligned
+     347         ldr     r4, [sp, #4]
+     348         mov     r5, r4, asr #31
+     349         strd    r4, [r8, #40]
+     ...
+    
+    This should fix #104. It was tested on an actual Beaglebone Black.
+    
+    An alternative fix would be to disable alignment checking by setting
+    SCTRL.A to 0 and allowing unaligned memory accesses.
+    
+    Change-Id: I4d366eb0af1b2936bca369fd28014fb829228ad5
+
+[33mcommit 7c3424c244a54c191c45d2fcfe666588cbf6d11a[m
+Author: Arne Welzel <arne.welzel@gmail.com>
+Date:   Wed Mar 21 22:01:17 2018 +0100
+
+    kernel/arm: do not treat all data aborts as pagefaults
+    
+    For now, distinguish alignment, translation and permission faults.
+    The first kind of faults cause the kernel to send SIGBUS to the
+    process causing the fault, the latter two are forwarded to `vm' as
+    pagefaults. Previously, any data abort was forwarded to `vm' as
+    a pagefault, resulting in hard to debug issue #104.
+    
+    Any unhandled fault status results in a disaster. This seems
+    better than naively hoping `vm' can do something about it.
+    
+    Change-Id: I526f575bb2681e087e20fd49c5c0846cdd450c31
+
+[33mcommit a27e58e1f7027bdd1fce3dc222dd24fa10d514fb[m
+Author: Marcelo Alencar <marceloalves@ufpa.br>
+Date:   Mon Mar 5 02:51:13 2018 +0000
+
+    Fix brazilian ABNT2 keymap
+    
+    This adds two missing keys (0x73 and 0x7e) and fixes KP_PERIOD (it
+    should type a comma, not a period), as mentioned in
+    
+    https://groups.google.com/d/msg/minix3/Pezep_HOL3I/mnfZXAeLsTMJ
+    
+    Closes #247
+    
+    Change-Id: Id85d04e36adcaa1a502cac8e5013396ea92502fe
+
+[33mcommit 4667c87c4d7830a403860b6355a6a09ef4ed0bee[m
+Author: blackdragonepic <32581667+blackdragonepic@users.noreply.github.com>
+Date:   Sun Jan 28 21:53:46 2018 -0500
+
+    remove a duplicate include
+    
+    removed #include <minix/type.h> duplicate
+    
+    Closes #246
+    
+    Change-Id: Icd575c452d562eb601133157a77d9d995ce043e9
+
+[33mcommit 2117e99cef0067fd9ed56b65bd919e7fb6bbdc0a[m
+Author: Nik Nyby <nikolas@gnu.org>
+Date:   Tue Jan 9 23:31:58 2018 -0500
+
+    Update usage man page: remove reference to /usr/ast
+    
+    This directory no longer exists, probably since the netbsd file layout
+    re-organization.
+    
+    Closes #244
+    
+    Change-Id: Ie4e3761dbf3adbdd76cb6323f920a4abab6b29d5
+
+[33mcommit 9866ad31fd560d01cf4e2a1c4ceaf27050cda8f6[m
+Author: Nik Nyby <nikolas@gnu.org>
+Date:   Mon Jan 8 20:36:48 2018 -0500
+
+    fs/mfs: Remove a few assert.h includes
+    
+    Those are unnecessary.
+    
+    Closes #241
+    
+    Change-Id: I26db0f07c65e7d078e642001b97e6d4313e6660a
+
+[33mcommit 24f3305be09cca88554c2abcb0b900e813ad6f50[m
+Author: Nik Nyby <nikolas@gnu.org>
+Date:   Mon Jan 8 23:55:18 2018 -0500
+
+    mkfs.mfs: fix typo in error message
+    
+    Closes #242
+    
+    Change-Id: I91ec2b36b2abfa897a43c97d886578fd28a5c768
+
+[33mcommit b2ee0702ff8e8e556f7fe39b81f43e413070dc59[m
+Author: Krystian Lewandowski <krystian.lew@gmail.com>
+Date:   Wed Nov 15 18:29:06 2017 +0100
+
+    pci server crashes during boot on Qubes OS
+    
+    I tried to launch Minix3 in Qubes OS. While there is no problem to boot
+    minix as a qube (in Qubes OS terminology) before 3641562, it fails with
+    the commit (and after). I didn't digg into PCI handling but this change
+    fixes the problem. Minix handles NULL case from pci_subclass_name.
+    
+    Change-Id: I162424d92b613598e6eb845a71f90a02e31041db
+
+[33mcommit 39d31d9fab45fb05bdbe27bb48d158b026ed661c[m
+Author: Jean-Baptiste Boric <jblbeurope@gmail.com>
+Date:   Wed Jul 12 08:16:13 2017 +0200
+
+    ARM: Remove dependency on mtools
+    
+    Instead of formatting the image, and then using the mtools to copy on it
+    the boot partition files, we use makefs to directly generate the
+    partition.
+    
+    Change-Id: I468e3100842177f3f55edbfdb910941bafa576ba
+
+[33mcommit b67d2ae9e25b001670b10ea59608322cc681c7a9[m
+Author: rlfnb <rlfnb@rlfnb.de>
+Date:   Tue Jul 4 09:08:53 2017 +0200
+
+    Fixed broken multiboot struct
+    
+    Change-Id: Ib59fb04a45c4417588bf204a5a6e6306f5097e22
+
+[33mcommit d4dd6511b9dc029206ce2c925ed135e16555aae4[m
+Author: rlfnb <rlfnb@rlfnb.de>
+Date:   Thu Jun 1 11:02:25 2017 +0200
+
+    replace tickdelay with micro_delay to be quantum-agnostic
+    
+    Change-Id: Ie449d797389a178372035d797c84b02d636788cd
+
+[33mcommit 3e2c6c96745db64738bad809b90b163a66e7b201[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Wed May 17 23:21:45 2017 +0000
+
+    isofs: support directories with many entries
+    
+    In particular, remove the hardcoded limit of 4096 entries in a single
+    directory, as there are (at least) real DVDs out there with more
+    entries than that.  The implementation of this change requires a
+    second pass on large directories; performance optimizations are left
+    to future work.
+    
+    Change-Id: Ia865ac95797fa2dd36b086779c3f1fef6b2f6a6f
+
+[33mcommit 502e7ff95325e67989155cb005ae158e5cf430f9[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Wed May 17 23:16:52 2017 +0000
+
+    at_wini: bump hardcoded ATAPI limit to DVD size
+    
+    at_wini was previously hardcoded to present ATAPI devices as having a
+    size of 800 MiB, which was enough for CDs but not for DVDs.  This
+    patch increases the device size to 8500 MiB, which should be large
+    enough to cover all DVDs.
+    
+    Change-Id: I7d3192e4ecd0708a655663c1007ff517ed969580
+
+[33mcommit d5e4fc0151be2113eea70db9459c5458310ac6c8[m
+Author: Antoine Leca <Antoine.Leca.1@gmail.com>
+Date:   Mon May 8 12:15:09 2017 +0000
+
+    Fix Makefile.boot small issue sync'ing with NetBSD
+    
+    Change-Id: I4f8cbfb9d4b6be8b31ce705cbecc4b12b7e1fe45
+
+[33mcommit 9f81acbc21316bcbade46d78b67a5f2e58d11bb9[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Mon May 8 11:53:38 2017 +0000
+
+    Fix lua
+    
+    As reported by Jean-Baptiste Boric, lua would refuse to start,
+    throwing an error about incompatibility of numeric types.
+    
+    This resolves #160.
+    
+    Change-Id: I5cd6c3b2a35c7023946e4d14d4feedaaecb956fb
+
+[33mcommit 9624407e7addfd8b88486acfe3a0e056e2b92ee3[m
+Author: rlfnb <rlfnb@rlfnb.de>
+Date:   Thu Apr 27 00:51:30 2017 +0200
+
+    header cleanup
+    
+    Change-Id: I4e169911591c56e91c301c5cb0bb3ea2d8140cf2
+
+[33mcommit c1d4abeb0c1f37fc6cc93b591426a5bf9367ebde[m
+Author: Jean-Baptiste Boric <jblbeurope@gmail.com>
+Date:   Tue Apr 11 18:21:50 2017 +0200
+
+    Fix pkgin_cd.sh
+    
+    Change-Id: I513c16b0691897f3c665532d50ed398967f3e4d0
+
+[33mcommit 66e071a40c108379c4bd68d308f20ae350b509c5[m
+Author: Jean-Baptiste Boric <jblbeurope@gmail.com>
+Date:   Tue Apr 11 18:19:55 2017 +0200
+
+    Add releasetools/pkgsrc_cdimage.sh
+    
+    This script uses the image generation framework to create a pkgsrc CD
+    image, useful for MINIX installations without Internet connectivity.
+    
+    Change-Id: Ife037f6b6958e38986afad0632f37999ecbb2b55
+
+[33mcommit 0884854a38aefec942b4f9677945914213a6eac9[m
+Author: Jean-Baptiste Boric <jblbeurope@gmail.com>
+Date:   Tue Apr 11 18:12:47 2017 +0200
+
+    Rework package bundling mechanism
+    
+    Setting PACKAGE_DIR without PACKAGES will default to bundling all
+    packages in PACKAGE_DIR. PKG_INFO is also mandatory now.
+    
+    Change-Id: Iaf02221ec91e9c54dc8caec6e9a01bccfc65cc31
+
+[33mcommit 19155598849a2c33c200f54f5f6f4fd781276c9b[m
+Author: Ben Mezger <me@benmezger.nl>
+Date:   Thu Mar 16 13:00:53 2017 -0300
+
+    Removed unused variable and cleaned whitespaces
+    
+    Change-Id: Iaaf6b6f5f49f2d2599a3422250ad7e6e41838b82
+
+[33mcommit afc65e92aa785da3cd6262780636e649f57ae9c3[m
+Author: Ben Mezger <me@benmezger.nl>
+Date:   Thu Mar 16 12:56:01 2017 -0300
+
+    Removed unused variables and cleaned whitespaces.
+    
+    Change-Id: Ib96d1c5bf7a1c65a99d77726fe54ccf37399f9eb
+
+[33mcommit 9f7f0ad073a34bff0457b448a521376251622b4d[m
+Author: Ben Mezger <me@benmezger.nl>
+Date:   Thu Mar 16 12:51:03 2017 -0300
+
+    Removed unused variables and cleaned whitespaces.
+    
+    Change-Id: Ie5c1ad84ad162ab18443dd228686aba544ecb9ef
+
+[33mcommit 81ae2bc455a73c05792f181d5497cdbd33f3c135[m
+Author: Ben Mezger <me@benmezger.nl>
+Date:   Thu Mar 16 12:30:27 2017 -0300
+
+    Prevent arg from being used any further
+    
+    Patch edited by David van Moolenbroek.
+    
+    Change-Id: Ie25faffea359e735145dbb4ae2bd2d213488952b
+
+[33mcommit 62cf0e1226d25a9da8f0cbcaaf52f3f5a7488e5f[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sat May 6 14:43:03 2017 +0200
+
+    distrib: fix debug builds
+    
+    Reported by Jean-Baptiste Boric.
+    
+    Change-Id: I1e9b156326385aa188c824557b6716c059e39fce
+
+[33mcommit 79a488aa87e1810dbafce4a8d392cd741cfb4f2f[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Apr 30 15:33:24 2017 +0000
+
+    Network stack feedback-based fixes
+    
+    Thanks to Lionel Sambuc!
+    
+    Change-Id: Iae6b2caf58e2b58093e60c5004cfa477e43da154
+
+[33mcommit 3ba6090f825dfbac97538b19928b0ab1e37909d6[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Sep 29 23:16:22 2016 +0000
+
+    tests: add advanced TCP/IP tests (test91-94)
+    
+    Change-Id: I052102f6122f82b3307595990bf91f64e97a45a8
+
+[33mcommit 1dee92ebe9d36c122dd2fee6f8e8b3cb279ddbfc[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Feb 23 21:57:15 2017 +0000
+
+    Import NetBSD networking rc scripts
+    
+    IMPORTANT: this change has a docs/UPDATING entry!
+    
+    Change-Id: I6f1e575166f5b47530a004c12aea9b45b571e13d
+
+[33mcommit 9a8b4f560189c2f719b77b732258a99e3dc28b09[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Tue Feb 21 23:34:25 2017 +0000
+
+    netconf(8): rewrite
+    
+    When possible, network drivers are now started automatically.  That
+    means that netconf(8)'s network driver selection has become obsolete.
+    This patch changes netconf(8) to allow the user to specify a network
+    configuration (currently one of DHCP IPv4+IPv6, DHCP IPv4-only,
+    manual IPv4-only) for any hardware network interfaces that are
+    currently present.
+    
+    Selection of network drivers that require manual configuration first
+    (mainly old ISA cards) is still supported, but now as a special case.
+    
+    Change-Id: I6208fc75192eb7f0b061862aaf7507f71a620da4
+
+[33mcommit 60299d873c4b49985abe58ba4eb1807d1e6152e5[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Mon Feb 20 14:07:55 2017 +0000
+
+    etc/rc: start lwip service
+    
+    Change-Id: I10cfdcde490987b93c79532a2c53dda2307b83ce
+
+[33mcommit e4dbab1e5368dc2124168836ba46a7d3ff6414b0[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Mon Feb 20 14:06:59 2017 +0000
+
+    etc/rc: auto-start PnP ethernet drivers
+    
+    Change-Id: I0f6c955511cbb04d47093de28109b5084609856a
+
+[33mcommit ad920fc485da86e45a88f73a98077b92da1288a3[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Sep 29 23:08:31 2016 +0000
+
+    tests: adapt existing tests to new LWIP service
+    
+    Change-Id: Id744e9d3fbe19733557011f8803593cf3768c35d
+
+[33mcommit bb9622b5ed41bec48062bf9c6806832c8984f025[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Sep 29 23:19:31 2016 +0000
+
+    ping(8), traceroute(8): adapt to new LWIP service
+    
+    Change-Id: I0aae7199dfd9075201975e133cdaeab6bc2bd24f
+
+[33mcommit ef8d499e2d2af900e9b2ab297171d7b088652482[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Sep 29 23:07:07 2016 +0000
+
+    Add lwip: a new lwIP-based TCP/IP service
+    
+    This commit adds a new TCP/IP service to MINIX 3.  As its core, the
+    service uses the lwIP TCP/IP stack for maintenance reasons.  The
+    service aims to be compatible with NetBSD userland, including its
+    low-level network management utilities.  It also aims to support
+    modern features such as IPv6.  In summary, the new LWIP service has
+    support for the following main features:
+    
+    - TCP, UDP, RAW sockets with mostly standard BSD API semantics;
+    - IPv6 support: host mode (complete) and router mode (partial);
+    - most of the standard BSD API socket options (SO_);
+    - all of the standard BSD API message flags (MSG_);
+    - the most used protocol-specific socket and control options;
+    - a default loopback interface and the ability to create one more;
+    - configuration-free ethernet interfaces and driver tracking;
+    - queuing and multiple concurrent requests to each ethernet driver;
+    - standard ioctl(2)-based BSD interface management;
+    - radix tree backed, destination-based routing;
+    - routing sockets for standard BSD route reporting and management;
+    - multicast traffic and multicast group membership tracking;
+    - Berkeley Packet Filter (BPF) devices;
+    - standard and custom sysctl(7) nodes for many internals;
+    - a slab allocation based, hybrid static/dynamic memory pool model.
+    
+    Many of its modules come with fairly elaborate comments that cover
+    many aspects of what is going on.  The service is primarily a socket
+    driver built on top of the libsockdriver library, but for BPF devices
+    it is at the same time also a character driver.
+    
+    Change-Id: Ib0c02736234b21143915e5fcc0fda8fe408f046f
+
+[33mcommit 0f03189a6a8bafe2a370ea990cf2cbb19da81b70[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Fri Sep 30 21:55:33 2016 +0000
+
+    RMIB: add indirection support for sparse subtrees
+    
+    Normally, each RMIB subtree consists of an array of nodes, indexed
+    by node identifier.  In a sparsely filled subtree, most of the array
+    is empty and just wasting memory.  In that case, it may be beneficial
+    to have a level of indirection, with an intermediate array containing
+    pairs of node IDs and pointers to the actual nodes.  This patch adds
+    support for such indirection.
+    
+    For the use cases that inspired this patch, net.inet and net.inet6,
+    the indirection shaves off a little under 16KB of memory from the
+    TCP/IP service.
+    
+    Change-Id: Ic68ca3fee1a0f2032f77eef6df42728f9b9400e8
+
+[33mcommit 5edbea50631e5089314617ad4298253cfedb7793[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Fri Nov 4 17:31:40 2016 +0000
+
+    libsys: allow for grant preallocation
+    
+    Since the grant table is allocated dynamically, a system service always
+    runs the risk of running out of memory at run time when trying to
+    allocate a grant.  In order to allow services to mitigate that risk,
+    grants can now be preallocated, typically at system service startup,
+    using the new cpf_prealloc(3) libsys function.  The function takes a
+    'count' parameter that indicates the number of additional grants to
+    preallocate.  Thus, the function may be called from multiple submodules
+    within a service, each preallocating their own maximum of grants that
+    it may need at run time.
+    
+    Change-Id: I6904726a722a8c27dfe2efa470e683718f310272
+
+[33mcommit 5d5fbe79c1b60734f34c69330aec5496644e8651[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Thu Sep 29 23:26:40 2016 +0000
+
+    Import new lwIP version into liblwip
+    
+    In order to match NetBSD-style imports of external code, the library
+    has been restructured.  The full lwIP source tree is imported, except
+    for a few .git* files in its root directory, into dist/.  The MINIX 3
+    Makefiles and other custom files are located in lib/.  Finally, since
+    we need to apply a number of small patches to lwIP, these patches are
+    stored in patches/, in addition to being applied to the lwIP tree.
+    
+    The currently imported version of lwIP is taken from its master
+    branch sometime after the 2.0.1 release, specifically git-7ffe5bf.
+    
+    Change-Id: Ie03c4fa36fa928870263c191205d6d93f652a3cc
+
+[33mcommit 47db417b1ac31c7a759a805a3e4be97a546ffa75[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Feb 26 16:04:50 2017 +0000
+
+    lance: perform full reinitialization for restarts
+    
+    When performing a restart (CSR0 STOP, STRT), the behavior regarding
+    the NIC's current RX/TX descriptor ring counters varies between cards:
+    older LANCE cards do not reset the counters; newer PCnet cards do
+    reset them; VirtualBox's emulation is once again broken in that it
+    claims to emulate newer cards but implements the older behavior.
+    
+    Changing the card's receive mode requires such a restart, and now that
+    the system can actually change receive modes dynamically as part of
+    normal network operation, this results in the lance driver breaking
+    all the time on at least VirtualBox.
+    
+    Instead of trying to figure out exactly what is going on with the
+    counters during a restart, we now simply perform a full-blown
+    reinitialization every time the NIC is restarted.  That leaves no
+    ambiguity regarding the counters, and appears to be what drivers on
+    other OSes do as well.  As a bonus, this approach actually saves code.
+    
+    Change-Id: I60fad2df6de4616d5de2cec39c09b60c15d854fb
+
+[33mcommit f7df02e7476731c31f12548e38bcadbaf0233f6a[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Wed Oct 12 04:41:08 2016 +0000
+
+    libnetdriver: rewrite
+    
+    This is a driver-breaking update to the netdriver library, which is
+    used by all network drivers.  The aim of this change is to make the
+    library more compatible with NetBSD, and in particular with various
+    features that are expected to be supported by the NetBSD userland.
+    The main changes made by this patch are the following:
+    
+    - each network driver now has a NetBSD-style short device name;
+    - drivers are not expected to receive packets right after startup;
+    - extended support for receipt modes, including multicast lists;
+    - support for multiple parallel send, receive requests;
+    - embedding of I/O vectors in send and receive requests;
+    - support for capabilities, including checksum offloading;
+    - support for reporting link status updates to the TCP/IP stack;
+    - support for setting and retrieving media status;
+    - support for changing the hardware (MAC) address;
+    - support for NetBSD interface flags IFF_DEBUG, IFF_LINK[0-2];
+    - support for NetBSD error statistics;
+    - support for regular time-based ("tick") callbacks.
+    
+    IMPORTANT: this patch applies a minimal update to the existing drivers
+    in order to make them work at all with the new netdriver library.  It
+    however does *not* change all drivers to make use of the new features.
+    In fact, strictly speaking, all drivers are now violating requirements
+    imposed by the new library in one way or another, most notably by
+    enabling packet receipt when starting the driver.  Changing all the
+    drivers to be compliant, and to support the newly added options, is
+    left to future patches.  The existing drivers should currently *not*
+    be taken as examples of how to implement a new network driver!
+    
+    With that said, a few drivers have already been changed to make use of
+    some of the new features: fxp, e1000, rtl8139, and rtl8169 now report
+    link and media status, and the last three of those now support setting
+    the hardware MAC address on the fly.  In addition, dp8390 has been
+    changed to default to PCI autoconfiguration if no configuration is
+    specified through environment variables.
+    
+    Change-Id: I4b3ea9c0b9bc25d5b0609c6ff256fb0db71cdc42
+
+[33mcommit 686761dbbce7cc1bcf150ce26b1c3f0eed7d17c6[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Fri Feb 17 11:41:41 2017 +0000
+
+    syslogd(8): drop some MINIX-specific changes
+    
+    Change-Id: Ic286b89975eeea1abf0d5086ee13dfb9ab57d8ba
+
+[33mcommit 5bded7c030da60e0fc007e73f9191ef5aa867ea0[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Mar 5 16:13:32 2017 +0000
+
+    ftpd(8): drop some MINIX-specific changes
+    
+    Also put in a crude way to clean up zombies when ftpd(8) is running
+    in daemon mode, because we do not yet support SA_NOCLDWAIT.
+    
+    Change-Id: I8a7db1d665c432d736db833b0022d0340764db1f
+
+[33mcommit 340f5e56603e4275faeb89a9aacace41ba22d661[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Mar 5 16:03:54 2017 +0000
+
+    Import NetBSD httpd(8)
+    
+    Also known as bozohttpd(8).
+    
+    Change-Id: I40e955b5654674f2c708b10e5e403ca9cbc92534
+
+[33mcommit 8f957290eb976b379733d0b3811fcb43f8fbaf1a[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Feb 19 14:27:23 2017 +0000
+
+    Import NetBSD rtadvd(8)
+    
+    Change-Id: I22626843d85c78f0fadefd58d61d7a85d285b2b8
+
+[33mcommit 5de448e31552e472484003223117b8301428cd77[m
+Author: David van Moolenbroek <david@minix3.org>
+Date:   Sun Feb 19 01:14:53 2017 +0000
+
+    Import NetBSD ndp(8)
+    
+    Like arp(8), this utility already uses the NetBSD 8 protocol for
+    talking to the operating system through routing sockets.
+    
+    Like arp(8), this utility is not fully functional, due to limitations
+    of lwIP.  While ndp(8) should provide a proper (read-only) view of the
+    contents of the Neighbor Discovery table, any attempts to modify the
+    table will fail.  In addition, various other ndp(8) features are not
+    supported.  On MINIX 3, the prefix and default router lists are not
+    managed by the operating system however, but rather by dhcpcd(8);
+    therefore, an implementation of the features related to those lists
+    would not provide any actual functionality.
+    
+    Change-Id: I479bfc8141ba69fe50c1b2f7091933267ce6fa3e
