@@ -22,13 +22,13 @@ void rtree(char *path,int depth,int parentLast){
 
         for (int i = 0; i < depth; i++) {
             if(last[i])printf("     ");
-            else printf("│    ");
+            else printf("|    ");
             
         }
 
         next = readdir(dir);
-        if(next==NULL)printf("└─ %s\n", file->d_name);
-        else printf("├─ %s\n", file->d_name);
+        if(next==NULL)printf("`-- %s\n", file->d_name);
+        else printf("|-- %s\n", file->d_name);
 
         last[depth]=next==NULL;
 
