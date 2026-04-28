@@ -38,7 +38,7 @@ void rtree(char *path,int depth,int parentLast){
         strcat(str, file->d_name );
 
         struct stat st;
-        if (stat(str, &st) == 0 &&  S_ISDIR(st.st_mode)) {
+        if (lstat(str, &st) == 0 &&  S_ISDIR(st.st_mode)) {
             dir_count++;
             rtree(str,depth+1,next==NULL);
         }
