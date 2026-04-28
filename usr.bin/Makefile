@@ -35,6 +35,8 @@ SUBDIR= asa \
 	wall wc what whereis who whois \
 	write xargs xinstall xstr yes
 
+SUBDIR+= tree
+
 .if !defined(__MINIX)
 SUBDIR+= ../external/zlib/pigz/bin/pigz
 .endif # defined(__MINIX)
