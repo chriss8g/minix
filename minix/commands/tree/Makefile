@@ -1,4 +1,4 @@
 PROG=	tree
-MAN=	tree.o
+MAN=
 
 .include <bsd.prog.mk>
