@@ -56,7 +56,7 @@ void tree(char *path){
     files_count=0;
     dir_count=0;
 
-    printf(path);
+    printf("%s",path);
     printf("\n");
 
     rtree(path,0,1);
