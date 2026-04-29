@@ -72,7 +72,7 @@ void tree(const char *path, const char *prefijo, int es_ultimo, int profundidad)
 }
 
 int main(int argc, char **argv) {
-    const char *root = "./..";
+    const char *root = ".";
     struct stat st;
     if (lstat(root, &st) == -1) {
         perror(root);
