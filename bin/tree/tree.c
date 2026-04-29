@@ -44,7 +44,7 @@ void tree(const char *path, const char *prefijo, int es_ultimo, int profundidad)
         //Es el ultimo entry?
         int last = (i == n - 1);
         //Cambiar identacion si es el ultimo o no
-        const char *branch = last ? "L__ " : "|-- ";
+        const char *branch = last ? "`-- " : "|-- ";
         const char *nextpref = last ? "    " : "|   ";
 
         //Es un link simbolico?
@@ -52,7 +52,7 @@ void tree(const char *path, const char *prefijo, int es_ultimo, int profundidad)
             printf("%s%s%s (symlink)\n", prefijo, branch, name);
             // No se sigue recursivamente
         
-        //Es un diectorio?
+        //Es un directorio?
         } else if (S_ISDIR(st.st_mode)) {
             printf("%s%s%s/\n", prefijo, branch, name);
             char newpref[1024];
@@ -72,7 +72,7 @@ void tree(const char *path, const char *prefijo, int es_ultimo, int profundidad)
 }
 
 int main(int argc, char **argv) {
-    const char *root = ".";
+    const char *root = (argc > 1) ? argv[1] : ".";
     struct stat st;
     if (lstat(root, &st) == -1) {
         perror(root);
