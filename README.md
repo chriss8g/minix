@@ -85,6 +85,40 @@ y entonces me dejo entrar.
 
 ![Welcome message picture](assets/welcome.png)
 
+
+### 2.3. Depuración de un bug en pthread
+
+
+1. Síntomas
+Al ejecutar el programa de prueba proporcionado por el profesor, se observó el siguiente comportamiento anómalo:
+
+La primera llamada a pthread_mutex_trylock retornaba 0 (OK), indicando que el mutex se había bloqueado correctamente.
+La segunda llamada a pthread_mutex_trylock (realizada por el mismo hilo) no retornaba nunca. El programa se quedaba congelado, sin mostrar los mensajes siguientes (unlock, destroy, PASS), y el 
+prompt de MINIX no volvía a aparecer hasta que se forzaba la interrupción con Ctrl + C.
+
+2. Anaálisis
+En MINIX, las funciones de hilos se dividen en dos capas. Por un lado, la capa de compatibilidad (archivo libmthread/pthread_compat.c) provee las funciones estándar pthread_* que los 
+programadores utilizan. Por otro lado, la implementación nativa (archivo libmthread/mutex.c) provee las funciones reales mthread_* que manejan los mutex a bajo nivel. La capa de compatibilidad 
+actúa como un traductor: cada función pthread_* debería llamar a su equivalente mthread_*.
+
+Al inspeccionar pthread_compat.c, se localizó la función pthread_mutex_trylock y se encontró el siguiente código: return pthread_mutex_trylock(mutex);
+
+El problema es que la función se llama a sí misma recursivamente en lugar de llamar a mthread_mutex_trylock. Esto es un error tipográfico
+
+3. Correc�ión
+La solución es mínima: cambiar la llamada recursiva por la llamada a la función nativa.
+Cambiar return pthread_mutex_trylock(mutex); por return mthread_mutex_trylock(mutex);
+
+4. Verificación
+Después de aplicar la corrección, se recompiló la librería y se ejecutó nuevamente el programa de prueba.
+Solución obtenid:
+first trylock: 0 (OK)
+second trylock: 11 (Resource deadlock avoided)
+unlock: 0 (OK)
+destroy: 0 (OK)
+PASS
+El programa ya no se congela. La segunda llamada retorna el código de error esperadoy el programa continúa ejecutando unlock, destroy y finalmente imprime PASS.
+
 ### 2.4. Implementacion del comando tree
 
 
