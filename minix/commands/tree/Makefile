@@ -1,8 +1,9 @@
 
 PROG = tree
 SRCS = tree.c
+MAN=
 
-.include <bsd.own.mk>
+.include <bsd.prog.mk>
 
 
 
