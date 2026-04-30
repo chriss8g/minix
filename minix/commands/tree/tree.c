@@ -6,20 +6,6 @@
 #include <errno.h>
 
 
-
-
-
-int main(int argc, char **argv) 
-{
-    const char *root = (argc > 1) ? argv[1] : ".";
-
-    printf("%s/\n", root);
-
-    tree(root, 0);
-    return 0;
-}
-
-
 static void tree( const char *path, int depth)
 {
     DIR *dir=opendir(path);
@@ -37,14 +23,14 @@ static void tree( const char *path, int depth)
 
     entry=readdir(dir);
 
-    while(entry != NULL)
+    while((entry=readdir(dir)) != NULL)
     {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) 
         {
             continue;
         }
 
-        snprintf(path1, sizeof(path1), "%s%s", path, entry->d_name);
+        snprintf(path1, sizeof(path1), "%s/%s", path, entry->d_name);
 
         if (lstat(path1, &st) == -1) {
             fprintf(stderr, "tree: error '%s': %s\n", path1, strerror(errno));
@@ -69,5 +55,20 @@ static void tree( const char *path, int depth)
 
 }
 
+
+
+
+
+
+
+int main(int argc, char **argv) 
+{
+    const char *root = (argc > 1) ? argv[1] : ".";
+
+    printf("%s/\n", root);
+
+    tree(root, 0);
+    return 0;
+}
 
 
