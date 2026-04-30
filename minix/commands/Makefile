@@ -24,7 +24,7 @@ SUBDIR=	at backup \
 	slip spell sprofalyze sprofdiff srccrc \
 	svrctl swifi synctree sysenv \
 	term termcap tget \
-	truncate umount \
+	tree truncate umount \
 	update version vol \
 	writeisofs fetch \
 	zmodem pkgin_cd pkgin_all pkgin_sets \
