@@ -21,19 +21,20 @@
  */
 
 EXTERN struct schedproc {
-	endpoint_t endpoint;	/* process endpoint id */
-	endpoint_t parent;	/* parent endpoint id */
-	unsigned flags;		/* flag bits */
+        endpoint_t endpoint;    /* process endpoint id */
+        endpoint_t parent;      /* parent endpoint id */
+        unsigned flags;         /* flag bits */
 
-	/* User space scheduling */
-	unsigned max_priority;	/* this process' highest allowed priority */
-	unsigned priority;		/* the process' current priority */
-	unsigned time_slice;		/* this process's time slice */
-	unsigned cpu;		/* what CPU is the process running on */
-	bitchunk_t cpu_mask[BITMAP_CHUNKS(CONFIG_MAX_CPUS)]; /* what CPUs is the
-								process allowed
-								to run on */
+        /* User space scheduling */
+        unsigned max_priority;  /* this process' highest allowed priority */
+        unsigned priority;              /* the process' current priority */
+        unsigned time_slice;            /* this process's time slice */
+        unsigned cpu;           /* what CPU is the process running on */
+        bitchunk_t cpu_mask[BITMAP_CHUNKS(CONFIG_MAX_CPUS)]; /* what CPUs is the
+                                                                process allowed
+                                                                to run on */
+        unsigned quantumFinished;  /*the number of quantum the proccess finished*/
 } schedproc[NR_PROCS];
 
 /* Flag values */
-#define IN_USE		0x00001	/* set when 'schedproc' slot in use */
+#define IN_USE          0x00001 /* set when 'schedproc' slot in use */
