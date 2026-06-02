@@ -1,0 +1,59 @@
+.TH TREE 1 "30 May 2026" "1.0" "tree man page"
+.SH NAME
+tree \- lista recursivamente el contenido de un directorio en forma de arbol
+
+.SH SYNOPSIS
+tree [ruta]
+
+.SH DESCRIPTION
+.B tree
+recorre de forma recursiva el directorio indicado por
+.I ruta
+y muestra su estructura de subdirectorios y archivos, usando indentacion
+con conectores ASCII para representar el nivel de profundidad.
+Si no se especifica
+.I ruta
+se asume el directorio actual
+.RB ( . ).
+.PP
+Las entradas de cada directorio se muestran en orden alfabetico.
+Los directorios se marcan con una barra final
+.RB ( / ).
+Los enlaces simbolicos se muestran con su destino
+.RB ( "nombre -> destino" )
+y
+.B no
+se siguen de forma recursiva, evitando asi los ciclos.
+.PP
+Al finalizar se imprime un resumen con la cantidad de directorios y
+archivos encontrados.
+
+.SH IMPLEMENTATION
+El recorrido se realiza unicamente mediante las llamadas al sistema
+.BR opendir (3),
+.BR readdir (3),
+.BR closedir (3)
+y
+.BR lstat (2).
+Se emplea
+.BR lstat (2)
+en lugar de
+.BR stat (2)
+para detectar los enlaces simbolicos con la macro
+.B S_ISLNK
+sin seguirlos.
+
+.SH EXAMPLES
+.nf
+tree
+tree /usr/src/minix/commands/tree
+.fi
+
+.SH SEE ALSO
+.BR ls (1),
+.BR opendir (3),
+.BR readdir (3),
+.BR lstat (2)
+
+.SH AUTHOR
+Jose Manuel Porras Guerra, proyecto THE MATCOM MINIX, Hito 2b.

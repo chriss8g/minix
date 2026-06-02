@@ -23,7 +23,7 @@ SUBDIR=	at backup \
 	rotate setup \
 	slip spell sprofalyze sprofdiff srccrc \
 	svrctl swifi synctree sysenv \
-	term termcap tget \
+	term termcap tget tree \
 	truncate umount \
 	update version vol \
 	writeisofs fetch \
