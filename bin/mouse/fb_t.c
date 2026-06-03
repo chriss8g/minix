@@ -1,10 +1,9 @@
-#define _POSIX_C_SOURCE 200809L
-
 #include <stdbool.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <linux/fb.h>
-#include <linux/input.h>
+#include <minix/fb.h>
+#include <sys/ioc_fb.h>
+#include <minix/input.h>
 #include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -22,14 +21,8 @@ struct framebuffer {
     unsigned char *memory;
 };
 
-enum input_kind {
-    INPUT_KIND_MICE,
-    INPUT_KIND_EVENT
-};
-
 struct input_source {
     int fd;
-    enum input_kind kind;
 };
 
 struct app_state {
@@ -129,12 +122,6 @@ static struct input_source open_input_source(const char *device_path) {
     source.fd = open(device_path, O_RDONLY);
     if (source.fd == -1) {
         fail("open input device");
-    }
-
-    if (strstr(device_path, "/event") != NULL) {
-        source.kind = INPUT_KIND_EVENT;
-    } else {
-        source.kind = INPUT_KIND_MICE;
     }
 
     return source;
@@ -342,82 +329,38 @@ static void redraw_figure(struct app_state *app, int x, int y, uint32_t foregrou
     app->drawn = true;
 }
 
-static bool read_mouse_delta_mice(int fd, int *delta_x, int *delta_y) {
-    unsigned char packet[3];
-    ssize_t bytes_read;
-
-    bytes_read = read(fd, packet, sizeof(packet));
-    if (bytes_read == -1) {
-        if (errno == EINTR) {
-            return false;
-        }
-
-        fail("read /dev/input/mice");
-    }
-
-    if (bytes_read != (ssize_t) sizeof(packet)) {
-        return false;
-    }
-
-    *delta_x = (int) ((signed char) packet[1]);
-    *delta_y = -(int) ((signed char) packet[2]);
-    return true;
-}
-
-static bool read_mouse_delta_event(int fd, int *delta_x, int *delta_y) {
+static bool read_mouse_delta(const struct input_source *source, int *delta_x, int *delta_y) {
     struct input_event event;
     ssize_t bytes_read;
-    int accumulated_x = 0;
-    int accumulated_y = 0;
-    bool saw_motion = false;
+
+    *delta_x = 0;
+    *delta_y = 0;
 
     while (keep_running) {
-        bytes_read = read(fd, &event, sizeof(event));
+        bytes_read = read(source->fd, &event, sizeof(event));
         if (bytes_read == -1) {
             if (errno == EINTR) {
                 return false;
             }
 
-            fail("read /dev/input/eventX");
+            fail("read mouse device");
         }
 
         if (bytes_read != (ssize_t) sizeof(event)) {
             return false;
         }
 
-        if (event.type == EV_REL) {
-            if (event.code == REL_X) {
-                accumulated_x += event.value;
-                saw_motion = true;
-            } else if (event.code == REL_Y) {
-                accumulated_y -= event.value;
-                saw_motion = true;
+        if (event.page == INPUT_PAGE_GD && (event.flags & INPUT_FLAG_REL)) {
+            if (event.code == INPUT_GD_X) {
+                *delta_x += event.value;
+            } else if (event.code == INPUT_GD_Y) {
+                *delta_y += event.value;
             }
-        }
-
-        if (event.type == EV_SYN && event.code == SYN_REPORT) {
-            if (saw_motion) {
-                *delta_x = accumulated_x;
-                *delta_y = accumulated_y;
-                return true;
-            }
-
-            return false;
+            return true;
         }
     }
 
     return false;
-}
-
-static bool read_mouse_delta(const struct input_source *source, int *delta_x, int *delta_y) {
-    *delta_x = 0;
-    *delta_y = 0;
-
-    if (source->kind == INPUT_KIND_EVENT) {
-        return read_mouse_delta_event(source->fd, delta_x, delta_y);
-    }
-
-    return read_mouse_delta_mice(source->fd, delta_x, delta_y);
 }
 
 int main(int argc, char **argv) {
@@ -476,7 +419,7 @@ int main(int argc, char **argv) {
 
     install_signal_handlers();
 
-    input_path = argc > 1 ? argv[1] : "/dev/input/mice";
+    input_path = argc > 1 ? argv[1] : "/dev/mousemux";
     input = open_input_source(input_path);
 
     redraw_figure(&app, current_x, current_y, foreground);
