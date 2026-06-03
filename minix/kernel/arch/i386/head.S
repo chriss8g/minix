@@ -42,7 +42,7 @@ MINIX:
 
 .balign 8
 
-#define MULTIBOOT_FLAGS (MULTIBOOT_HEADER_WANT_MEMORY | MULTIBOOT_HEADER_MODS_ALIGNED)
+#define MULTIBOOT_FLAGS (MULTIBOOT_HEADER_WANT_MEMORY | MULTIBOOT_HEADER_MODS_ALIGNED | MULTIBOOT_HEADER_HAS_VBE)
 
 multiboot_magic:
 	.long MULTIBOOT_HEADER_MAGIC
@@ -55,15 +55,15 @@ multiboot_checksum:
 	.long 0
 	.long 0
 	.long 0
-/* Video mode */
+/* Video mode: request linear graphics framebuffer from GRUB */
 multiboot_mode_type:
-	.long MULTIBOOT_VIDEO_MODE_EGA
+	.long 0				/* 0 = linear graphics mode */
 multiboot_width:
-	.long MULTIBOOT_CONSOLE_COLS
+	.long 1024
 multiboot_height:
-	.long MULTIBOOT_CONSOLE_LINES
+	.long 768
 multiboot_depth:
-	.long 0
+	.long 32
 
 multiboot_init:
 	mov	$load_stack_start, %esp	/* make usable stack */
