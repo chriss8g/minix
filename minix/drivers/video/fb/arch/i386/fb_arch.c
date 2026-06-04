@@ -21,6 +21,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <dev/videomode/videomode.h>
+#include <dev/videomode/edidvar.h>
+#include <dev/videomode/edidreg.h>
 
 #include "fb.h"
 
@@ -94,8 +97,8 @@ arch_pan_display(int minor, struct fb_var_screeninfo *fbvsp)
 int
 arch_fb_init(int minor, struct edid_info *info)
 {
-	struct kinfo kinfo;
-	struct multiboot_info *mbi;
+	kinfo_t kinfo;
+	multiboot_info_t *mbi;
 	struct minix_mem_range mr;
 	uint32_t width, height, bpp, pitch;
 
