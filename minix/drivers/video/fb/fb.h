@@ -2,6 +2,7 @@
 #define __FB_H__
 
 #include <minix/fb.h>
+#include <dev/videomode/edidvar.h>
 
 int arch_fb_init(int minor, struct edid_info *info);
 int arch_get_device(int minor, struct device *dev);
