@@ -17,6 +17,8 @@ static unsigned balance_timeout;
 
 #define BALANCE_TIMEOUT	5 /* how often to balance queues in seconds */
 
+#define MAX_CPU_QUANTA	3	/* umbral N de penalizacion por ventana */
+
 static int schedule_process(struct schedproc * rmp, unsigned flags);
 
 #define SCHEDULE_CHANGE_PRIO	0x1
@@ -96,8 +98,17 @@ int do_noquantum(message *m_ptr)
 	}
 
 	rmp = &schedproc[proc_nr_n];
-	if (rmp->priority < MIN_USER_Q) {
-		rmp->priority += 1; /* lower priority */
+
+	/* Hito 3: el proceso agoto un quantum completo en esta ventana. */
+	rmp->cpu_quantum_count++;
+
+	/* Penaliza solo si abuso de la CPU (>= N quantums en la ventana),
+	 * bajando un nivel de prioridad hacia MIN_USER_Q sin excederlo. */
+	if (rmp->cpu_quantum_count >= MAX_CPU_QUANTA) {
+		if (rmp->priority < MIN_USER_Q) {
+			rmp->priority += 1; /* lower priority */
+		}
+		rmp->cpu_quantum_count = 0; /* reinicia tras penalizar */
 	}
 
 	if ((rv = schedule_process_local(rmp)) != OK) {
@@ -130,6 +141,7 @@ int do_stop_scheduling(message *m_ptr)
 	cpu_proc[rmp->cpu]--;
 #endif
 	rmp->flags = 0; /*&= ~IN_USE;*/
+	rmp->cpu_quantum_count = 0;	/* libera el contador junto al slot */
 
 	return OK;
 }
@@ -221,6 +233,7 @@ int do_start_scheduling(message *m_ptr)
 		return rv;
 	}
 	rmp->flags = IN_USE;
+	rmp->cpu_quantum_count = 0;	/* arranca la ventana sin quantums consumidos */
 
 	/* Schedule the process, giving it some quantum */
 	pick_cpu(rmp);
@@ -357,10 +370,17 @@ void balance_queues(void)
 
 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
 		if (rmp->flags & IN_USE) {
-			if (rmp->priority > rmp->max_priority) {
-				rmp->priority -= 1; /* increase priority */
-				schedule_process_local(rmp);
+			/* Hito 3: si no agoto ningun quantum completo en la
+			 * ventana, recupera un nivel de prioridad hacia
+			 * max_priority sin excederlo. */
+			if (rmp->cpu_quantum_count == 0) {
+				if (rmp->priority > rmp->max_priority) {
+					rmp->priority -= 1; /* increase priority */
+					schedule_process_local(rmp);
+				}
 			}
+			/* Cierre de ventana: reinicia el contador siempre. */
+			rmp->cpu_quantum_count = 0;
 		}
 	}
 
