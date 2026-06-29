@@ -16,7 +16,7 @@ SUBDIR=	at backup \
 	loadkeys loadramdisk look lp \
 	lpd lspci mail MAKEDEV \
 	minix-service mount mt netconf \
-	prep printroot \
+	paint prep printroot \
 	profile progressbar \
 	ramdisk rawspeed readclock \
 	remsync \

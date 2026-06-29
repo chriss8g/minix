@@ -1,0 +1,65 @@
+.TH PAINT 1 "21 Jun 2026" "1.0" "paint man page"
+.SH NAME
+paint \- pizarra de caracteres controlada por el mouse
+.SH SYNOPSIS
+paint
+.SH DESCRIPTION
+.B paint
+trata la pantalla como una matriz bidimensional de celdas, una por cada
+caracter, y permite dibujar sobre ella con el mouse.
+Al iniciar muestra un
+.B CURSOR
+en el centro de la pantalla que se mueve en la misma direccion que el
+mouse.
+.PP
+Con el boton
+.B izquierdo
+presionado, el cursor actua como una brocha y escribe el caracter
+.RB ( * )
+por las celdas que recorre.
+Con el boton
+.B derecho
+presionado, actua como una goma y escribe espacios, borrando lo que
+encuentra a su paso.
+.PP
+El programa termina y restaura la pantalla al pulsar
+.BR q ,
+.B ESC
+o
+.BR Ctrl-C .
+.SH IMPLEMENTATION
+.B paint
+lee los eventos del mouse abriendo el nodo de dispositivo
+.I /dev/mouse0
+y leyendo estructuras
+.B struct input_event
+crudas.
+Esos eventos los produce el driver
+.B pckbd
+(controlador i8042 del raton PS/2) y los expone el servidor
+.BR input .
+El movimiento llega como eventos relativos de la pagina General Desktop
+(codigos X e Y) y los botones como eventos de la pagina Button.
+.PP
+El dibujo se realiza con secuencias de escape ANSI/VT100 enviadas por la
+salida estandar: posicionamiento del cursor
+.RB ( "ESC [ fila ; col H" )
+y borrado de pantalla
+.RB ( "ESC [ 2 J" ).
+No se accede a la memoria de video ni a puertos de hardware.
+El terminal se pone en modo
+.B raw
+con
+.BR tcsetattr (3)
+para leer sin eco ni buffer de linea, y se restaura siempre al salir.
+.SH FILES
+.TP
+.I /dev/mouse0
+nodo del primer mouse expuesto por el servidor input.
+.SH SEE ALSO
+.BR open (2),
+.BR read (2),
+.BR ioctl (2),
+.BR tcsetattr (3)
+.SH AUTHOR
+Jose Manuel Porras Guerra, proyecto THE MATCOM MINIX, Tarea Extra.
