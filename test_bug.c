@@ -5,7 +5,7 @@
 #include <string.h>
 static const char *errname(int err)
 {
-    if (err == 0)
+    if(err == 0)
     return "OK";
     return strerror(err);
 }
@@ -13,7 +13,7 @@ int main(void)
 {
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     int r1, r2, r3, r4;
-    r1 = pthread_mutex_trylock(&mutex);
+    r1= pthread_mutex_trylock(&mutex);
     printf("first trylock: %d (%s)\n", r1, errname(r1));
     r2 = pthread_mutex_trylock(&mutex);
     printf("second trylock: %d (%s)\n", r2, errname(r2));
@@ -32,4 +32,3 @@ int main(void)
     printf("PASS\n");
     return 0;
 }
-

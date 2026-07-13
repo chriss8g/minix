@@ -96,9 +96,24 @@ int do_noquantum(message *m_ptr)
 	}
 
 	rmp = &schedproc[proc_nr_n];
-	if (rmp->priority < MIN_USER_Q) {
-		rmp->priority += 1; /* lower priority */
-	}
+
+
+	
+ 
+         //task 5 quantums counter
+ 
+	rmp->consumed_quantums++;
+	
+	if(rmp->consumed_quantums >= 3)
+	{
+		if(rmp->priority < MIN_USER_Q) {
+			rmp->priority +=1; /*lower priority */
+		}
+		
+		rmp->consumed_quantums = 0; 
+	} 
+
+
 
 	if ((rv = schedule_process_local(rmp)) != OK) {
 		return rv;
@@ -161,6 +176,9 @@ int do_start_scheduling(message *m_ptr)
 	rmp->endpoint     = m_ptr->m_lsys_sched_scheduling_start.endpoint;
 	rmp->parent       = m_ptr->m_lsys_sched_scheduling_start.parent;
 	rmp->max_priority = m_ptr->m_lsys_sched_scheduling_start.maxprio;
+
+        rmp->consumed_quantums = 0;
+
 	if (rmp->max_priority >= NR_SCHED_QUEUES) {
 		return EINVAL;
 	}
@@ -357,12 +375,23 @@ void balance_queues(void)
 
 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
 		if (rmp->flags & IN_USE) {
-			if (rmp->priority > rmp->max_priority) {
-				rmp->priority -= 1; /* increase priority */
-				schedule_process_local(rmp);
+
+			//TASK 5 REWARD LOGIC
+			
+			if(rmp->consumed_quantums == 0) {
+
+				if (rmp->priority > rmp->max_priority) {
+					rmp->priority -= 1; //increase priority
+					schedule_process_local(rmp);
+				}	
 			}
+			//TASK 5 RESET LOGIC
+			
+			rmp->consumed_quantums = 0;
 		}
 	}
+
+	//Alarm for the next balance window
 
 	if ((r = sys_setalarm(balance_timeout, 0)) != OK)
 		panic("sys_setalarm failed: %d", r);
